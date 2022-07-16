@@ -50,6 +50,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         setupLayout()
+        profileHeaderView.setStatusButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.profileHeaderView.setStatusbuttonPressed()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
