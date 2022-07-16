@@ -10,7 +10,7 @@ import UIKit
 
 final class Model {
     
-    let password = "Password"
+    let password = "Парольчик"
     
     func check(word: String) {
         guard word != "" else { return }
@@ -24,7 +24,7 @@ final class Model {
     
     private lazy var passwordAlert: UIAlertController = {
         let alertController = UIAlertController(
-            title: "Invalid password!",
+            title: "Неверный пароль!",
             message: "",
             preferredStyle: .alert)
         

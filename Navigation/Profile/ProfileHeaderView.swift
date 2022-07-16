@@ -13,19 +13,13 @@ class ProfileHeaderView: UIView {
     static let identifire = "ProfileHeaderView"
     private var status: String = ""
     
-    var setStatusButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 14
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.setTitle("Показать статус", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+     lazy var setStatusButton: CustomButton = {
+        let button = CustomButton(
+            title: "Показать статус",
+            titleColor: UIColor.white,
+            backColor: UIColor.systemBlue,
+            backImage: UIImage(named: "blue_pixel")!
+        )
         return button
     }()
     
@@ -73,18 +67,18 @@ class ProfileHeaderView: UIView {
         return text
     }()
     
-    @objc func buttonPressed(){
+     func setStatusbuttonPressed() {
         guard statusTextField.text?.isEmpty == false else {return}
         statusLabel.text = statusTextChanged(statusTextField)
         self.statusTextField.text = ""
     }
-
-@objc func statusTextChanged(_ textField: UITextField) -> String {
-    if let newStatus = textField.text {
-        status = newStatus
+    
+    @objc func statusTextChanged(_ textField: UITextField) -> String {
+        if let newStatus = textField.text {
+            status = newStatus
+        }
+        return status
     }
-    return status
-}
     
     func setupViews(){
         self.addSubview(avatarImageView)
@@ -123,3 +117,4 @@ class ProfileHeaderView: UIView {
         }
     }
 }
+
